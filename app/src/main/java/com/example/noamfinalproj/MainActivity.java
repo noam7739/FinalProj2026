@@ -20,23 +20,22 @@ public class MainActivity extends AppCompatActivity {
         Button btnLocker = findViewById(R.id.btnLocker);
 
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(MainActivity.this, "Game Starting...", Toast.LENGTH_SHORT).show();
 
 
-            }
+        btnInstructions.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, InstructionActivity.class);
+            startActivity(intent);
         });
-
 
         btnInstructions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "How to Play: Swipe to Kick!", Toast.LENGTH_LONG).show();
-            }
-        });
+                                               @Override
+                                               public void onClick(View v) {
+                                                   Intent intent = new Intent(MainActivity.this, InstructionActivity.class);
+                                                   startActivity(intent);
+                                               }
+                                           });
+
+
 
 
 
