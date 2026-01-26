@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         btnLocker.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LockerActivity.class);
             startActivity(intent);
