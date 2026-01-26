@@ -34,17 +34,34 @@ public class MainActivity extends AppCompatActivity {
                                                    startActivity(intent);
                                                }
                                            });
-
-
-
-
-
-
-        btnLocker.setOnClickListener(new View.OnClickListener() {
+        btnStart.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GameActivity.class);
+            startActivity(intent);
+        });
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Opening Locker...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(intent);
             }
         });
-    }
+
+
+
+
+        btnLocker.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LockerActivity.class);
+            startActivity(intent);
+
+
+            btnLocker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, LockerActivity.class);
+                    startActivity(intent);
+                }
+            });
+              });
 }
+    }
+
