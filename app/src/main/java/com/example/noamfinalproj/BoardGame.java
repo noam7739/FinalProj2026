@@ -16,7 +16,7 @@ public class BoardGame extends View {
     private Drawable ballDrawable;
     private Drawable goalDrawable;
 
-    private float x = 0, y = 0;
+    private float x = 0, y = 0, dx=0,dy=0;
     private Ball ball;
 
     public BoardGame(Context context) {
@@ -25,7 +25,7 @@ public class BoardGame extends View {
         SharedPreferences sp = context.getSharedPreferences("GamePrefs", Context.MODE_PRIVATE);
 
         // 2. שליפת שם הכדור. אם המשתמש לא בחר, "ball" יהיה ברירת המחדל
-        String ballName = sp.getString("selectedBallName", "ball");
+                String ballName = sp.getString("selectedBallName", "ball");
 
         // 3. מציאת ה-ID של התמונה לפי השם שלה (בתיקיית drawable)
         int resID = context.getResources().getIdentifier(ballName, "drawable", context.getPackageName());
@@ -78,11 +78,34 @@ public class BoardGame extends View {
                 invalidate(); // מאתחל את הציור מחדש
                 break;
             case MotionEvent.ACTION_UP:
+                dy = (y-ballY)/10;
+                dx = (x-ballY)/10;
+
+
                 // אפשר לבצע פעולה כאשר השחקן משחרר את המגע (כמו זריקת הכדור)
                 break;
             default:
+
+
+            private class ThreadGame extends Thread{
+                @Override
+                public void run() {
+                    super.run();
+                    while (true)
+                    {
+                        try {
+                            sleep(40);
+                            if(isRun)
+                                handler.sendEmptyMessage(0);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
                 return false;
         }
         return true;
     }
-}
+

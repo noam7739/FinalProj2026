@@ -26,6 +26,7 @@ public class LockerActivity extends AppCompatActivity {
         ImageButton btnYellow = findViewById(R.id.btnSelectYellow);
         Button btnSave = findViewById(R.id.btnSaveLocker);
 
+
         sp = getSharedPreferences("GamePrefs", MODE_PRIVATE);
 
         // טעינת הבחירה הקודמת מהזיכרון
@@ -51,7 +52,7 @@ public class LockerActivity extends AppCompatActivity {
     private void updatePreview(String imageName) {
         currentSelectedBall = imageName;
         // הפיכת מחרוזת (String) למזהה תמונה (Resource ID)
-        int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
-        imgBallPreview.setImageResource(resID);
+        //int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        //imgBallPreview.setImageResource(resID);
     }
 }
