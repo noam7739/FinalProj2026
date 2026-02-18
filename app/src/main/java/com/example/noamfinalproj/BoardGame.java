@@ -159,6 +159,7 @@ public class BoardGame extends View {
                     }
 
 
+
                     // ===== תנועת הכדור =====
                     if (isShot) {
                         ballX += dx;
