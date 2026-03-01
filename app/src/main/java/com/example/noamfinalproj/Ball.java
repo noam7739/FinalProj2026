@@ -1,40 +1,33 @@
 package com.example.noamfinalproj;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 
-public class Ball {
-    private int x,y;
+public class Ball extends GameObject {
+    private float dx = 0, dy = 0;
+    private final float ballRadius = 55;
 
-    public Ball(int y, int x) {
-        this.y = y;
-        this.x = x;
+    public Ball(float x, float y, Drawable image) {
+        super(x, y, 110, 110, image);
     }
 
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
+    public void setVelocity(float dx, float dy) {
+        this.dx = dx;
+        this.dy = dy;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void update() {
+        x += dx;
+        y += dy;
+        dx *= 0.985f; // חיכוך להאטה
+        dy *= 0.985f;
     }
 
-    public void setXY(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public boolean isStopped() {
+        // אם המהירות נמוכה מאוד, הכדור נחשב כעצור
+        return Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2;
     }
 
-    public void move() {
-        x = x+20;
-        y=y+20;
-    }
-
-    public void draw(Canvas canvas)
-    {
-        canvas.drawCircle(x,y,60,new Paint());
+    public float getRadius() {
+        return ballRadius;
     }
 }
-
