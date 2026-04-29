@@ -10,11 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class GameActivity extends AppCompatActivity {
 
+    BoardGame boardGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        BoardGame boardGame = new BoardGame(this);
+        boardGame = new BoardGame(this);
         setContentView(boardGame);
     }
 }

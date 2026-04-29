@@ -35,11 +35,13 @@ public class BoardGame extends View {
     private int shakeIntensity = 0;
     private Random random = new Random();
     private RectF restartBtn, homeBtn;
+    private Context context;
 
     public BoardGame(Context context) {
         super(context);
         initPaints();
         loadAssets(context);
+        this.context = context;
         new Thread(this::gameLoop).start();
     }
 
@@ -150,10 +152,12 @@ public class BoardGame extends View {
                 if (!isGoalChecked && ball.getY() <= goalBottom) checkGoal();
                 if (ball.getY() < -100 || ball.getX() < -100 || ball.getX() > getWidth()+100 || ball.isStopped()) {
                     isShot = false;
+                    FB.getInstance(context).setBallPosition((int)ball.getX(), (int)ball.getY());
                     new Handler(Looper.getMainLooper()).postDelayed(this::nextTurn, 1000);
                 }
             }
             postInvalidate();
+            // TODO: 29/04/2026   למחוק את השורה ולצייר את הכדור בכל פעם שמקבלים שינוי מיקום כדור מהפייבייס 
         }
     }
 
@@ -221,5 +225,14 @@ public class BoardGame extends View {
         }
     }
 
-    @Override protected void onDetachedFromWindow() { super.onDetachedFromWindow(); isRunning = false; }
+    @Override protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        isRunning = false;
+    }
+
+    public void setBallPosFromFB(FbBall fbBall) {
+        ball.x = fbBall.getX();
+        ball.y = fbBall.getY();
+        invalidate();
+    }
 }
