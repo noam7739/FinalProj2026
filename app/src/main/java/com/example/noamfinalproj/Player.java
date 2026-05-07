@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-public class player extends GameObject {
+public class Player extends GameObject {
     private Drawable idleDrawable, kickDrawable;
     private boolean isKicking = false;
     private float rotationAngle = 0;
     private long kickStartTime = 0;
     private final long KICK_DURATION = 400;
 
-    public player(Context context) {
+    public Player(Context context) {
         // אתחול עם ערכי 0, ה-BoardGame יעדכן מיקום בכל פריים
         super(0, 0, 350, 450, null);
         idleDrawable = context.getResources().getDrawable(R.drawable.player_idle, null);

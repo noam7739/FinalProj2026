@@ -3,13 +3,13 @@ package com.example.noamfinalproj;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-public class keeper extends GameObject {
+public class Keeper extends GameObject {
     private int direction = 1;
     private int jumpHeight = 0;
     private boolean isJumping = false;
     private int speed = 15;
 
-    public keeper(float x, float y, int width, int height, Drawable image) {
+    public Keeper(float x, float y, int width, int height, Drawable image) {
         super(x, y, width, height, image);
     }
 
