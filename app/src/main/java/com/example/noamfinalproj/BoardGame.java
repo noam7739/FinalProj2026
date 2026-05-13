@@ -114,6 +114,7 @@ public class BoardGame extends View {
         goalRight = (w / 2) + 350;
         goalTop = 120;
         goalBottom = 340;
+
         
         keeper.setPosition(w / 2f, 250);
         
