@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "96862597670",
+    "firebase_url": "https://finalprojectnoam-default-rtdb.firebaseio.com",
+    "project_id": "finalprojectnoam",
+    "storage_bucket": "finalprojectnoam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96862597670:android:a2f789fcd9a876ccb2ace7",
+        "android_client_info": {
+          "package_name": "com.example.noamfinalproj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDoNm4YWX299KoLOB_EdV9kNCwe3E7Zro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
