@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class BoardGame extends View {
     private boolean isRunning = true;
+
     private Paint scorePaint, infoPaint, winPaint, goalAnnouncePaint, buttonPaint, buttonTextPaint, uiBoxPaint, linePaint;
     private Drawable backgroundDrawable, goalDrawable;
     private Player player;
