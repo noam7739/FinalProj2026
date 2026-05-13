@@ -2,6 +2,7 @@ package com.example.noamfinalproj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +15,19 @@ public class RoleSelectionActivity extends AppCompatActivity {
         Button btnP1 = findViewById(R.id.btnSelectP1);
         Button btnP2 = findViewById(R.id.btnSelectP2);
 
-        btnP1.setOnClickListener(v -> startGame(1));
-        btnP2.setOnClickListener(v -> startGame(2));
+        btnP1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame(1);
+            }
+        });
+
+        btnP2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame(2);
+            }
+        });
     }
 
     private void startGame(int playerNum) {

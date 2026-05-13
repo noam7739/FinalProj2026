@@ -44,7 +44,12 @@ public class BoardGame extends View {
         initPaints();
         loadAssets(context);
         FB.getInstance().listenToGame(this);
-        new Thread(this::gameLoop).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                gameLoop();
+            }
+        }).start();
     }
 
     private void initPaints() {
@@ -128,7 +133,8 @@ public class BoardGame extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 if (isDragging) {
-                    isDragging = false; isShot = true;
+                    isDragging = false;
+                    isShot = true;
                     player.startKick();
                     ball.setVelocity((startX - event.getX()) / 7f, (startY - event.getY()) / 7f);
                     if (isPlayer1Turn) shotsP1++; else shotsP2++;
@@ -151,7 +157,12 @@ public class BoardGame extends View {
                 if (!isGoalChecked && ball.getY() <= goalBottom) checkGoal();
                 if (ball.getY() < -100 || ball.isStopped()) {
                     isShot = false;
-                    postDelayed(this::nextTurn, 1000);
+                    postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            nextTurn();
+                        }
+                    }, 1000);
                 }
             }
             postInvalidate();
@@ -176,7 +187,9 @@ public class BoardGame extends View {
     }
 
     private void nextTurn() {
-        feedbackText = ""; isPlayer1Turn = !isPlayer1Turn; isGoalChecked = false;
+        feedbackText = ""; 
+        isPlayer1Turn = !isPlayer1Turn; 
+        isGoalChecked = false;
         resetBallToStart(); checkGameOver();
     }
 
@@ -191,7 +204,9 @@ public class BoardGame extends View {
     private void resetGame() {
         scoreP1 = 0; scoreP2 = 0; shotsP1 = 0; shotsP2 = 0;
         FB.getInstance().updateScore(0, 0);
-        isPlayer1Turn = true; gameOverMessage = ""; feedbackText = "";
+        isPlayer1Turn = true;
+        gameOverMessage = "";
+        feedbackText = "";
         resetBallToStart();
     }
 
@@ -222,9 +237,18 @@ public class BoardGame extends View {
         } else if (!feedbackText.isEmpty()) {
             canvas.drawText(feedbackText, w / 2f, h / 2f, goalAnnouncePaint);
         } else {
-            String turnText = (isPlayer1Turn ? "PLAYER 1" : "PLAYER 2") + " TURN";
+            String turnText;
+            if (isPlayer1Turn) {
+                turnText = "PLAYER 1 TURN";
+            } else {
+                turnText = "PLAYER 2 TURN";
+            }
             boolean isMyTurn = (isPlayer1Turn && myRole == 1) || (!isPlayer1Turn && myRole == 2);
-            canvas.drawText(turnText + (isMyTurn ? " (YOU)" : ""), w / 2f, 80, infoPaint);
+            String youText = "";
+            if (isMyTurn) {
+                youText = " (YOU)";
+            }
+            canvas.drawText(turnText + youText, w / 2f, 80, infoPaint);
         }
     }
 }
